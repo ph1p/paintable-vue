@@ -26,10 +26,11 @@
     "url": "https://github.com/ph1p/paintable-vue"
   },
   "scripts": {
-    "serve": "yarn build && vue-cli-service serve",
+    "serve": "npm run build && vue-cli-service serve",
     "build": "vue-cli-service build --mode production --target lib --name paintable ./src/plugin.js && rm ./dist/demo.html",
-    "now-build": "yarn build && vue-cli-service build ./src/main.js --dest ./demo",
-    "lint": "vue-cli-service lint"
+    "now-build": "npm run build && vue-cli-service build ./src/main.js --dest ./demo",
+    "lint": "vue-cli-service lint",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.11",
