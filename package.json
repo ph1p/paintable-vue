@@ -1,0 +1,117 @@
+{
+  "name": "@paintable/vue",
+  "version": "0.0.1",
+  "description": "Paintable for vue",
+  "author": "Ph1p <me@ph1p.dev>",
+  "main": "dist/paintable.common.js",
+  "module": "dist/paintable.umd.min.js",
+  "files": [
+    "dist/paintable.common.js",
+    "dist/paintable.umd.min.js",
+    "dist/paintable.umd.js"
+  ],
+  "keywords": [
+    "canvas",
+    "vue",
+    "paintable",
+    "touch",
+    "mouse",
+    "draw",
+    "plugin",
+    "component"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ph1p/paintable-vue"
+  },
+  "scripts": {
+    "serve": "yarn build && vue-cli-service serve",
+    "build": "vue-cli-service build --mode production --target lib --name paintable ./src/plugin.js && rm ./dist/demo.html",
+    "now-build": "yarn build && vue-cli-service build ./src/main.js --dest ./demo",
+    "lint": "vue-cli-service lint"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.11",
+    "@vue/cli-plugin-eslint": "~4.5.11",
+    "@vue/cli-service": "~4.5.11",
+    "@vue/compiler-sfc": "^3.0.5",
+    "babel-eslint": "^10.1.0",
+    "eslint-plugin-vue": "^7.5.0",
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.3"
+  },
+  "dependencies": {
+    "@paintable/core": "^0.2.0",
+    "vue": "^3.0.0"
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {
+      "no-console": 0,
+      "no-unused-vars": 0
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.vue$": "vue-jest",
+      ".+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
+      "^.+\\.jsx?$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "snapshotSerializers": [
+      "jest-serializer-vue"
+    ],
+    "testMatch": [
+      "**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
+    ],
+    "testURL": "http://localhost/",
+    "watchPlugins": [
+      "jest-watch-typeahead/filename",
+      "jest-watch-typeahead/testname"
+    ]
+  },
+  "gitHooks": {
+    "pre-commit": "npm run build && lint-staged"
+  },
+  "lint-staged": {
+    "./src/*.{js,vue}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  }
+}
