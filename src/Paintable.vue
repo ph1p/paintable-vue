@@ -79,7 +79,6 @@ export default defineComponent({
     name: {
       immediate: true,
       handler(name) {
-        console.log(name);
         this.$paintable.setName(name);
       }
     },
