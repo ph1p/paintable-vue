@@ -27,7 +27,8 @@
   "files": [
     "dist/paintable.common.js",
     "dist/paintable.umd.min.js",
-    "dist/paintable.umd.js"
+    "dist/paintable.umd.js",
+    "index.d.ts"
   ],
   "dependencies": {
     "core-js": "^3.6.5",
