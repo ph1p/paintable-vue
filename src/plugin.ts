@@ -1,15 +1,20 @@
 import PaintableComponent from './Paintable.vue';
 import { Paintable } from '@paintable/core';
+import { App } from 'vue';
+
+export interface Options {
+  setItem: (key: string, value: any) => void;
+  getItem: (key: string) => any;
+  removeItem: (key: string) => void;
+}
+
+export type PaintableRef = typeof PaintableComponent.methods;
 
 const PaintablePlugin = {
-  install(app, options) {
+  install(app: App, options: Options) {
     const paintableInstance = new Paintable();
 
-    if (app.version && app.version.startsWith('3')) {
-      app.config.globalProperties.$paintable = paintableInstance;
-    } else {
-      app.prototype.$paintable = paintableInstance;
-    }
+    app.config.globalProperties.$paintable = paintableInstance;
 
     if (options && options.setItem) {
       paintableInstance.setItem = options.setItem;

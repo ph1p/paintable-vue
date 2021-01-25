@@ -1,3 +1,5 @@
 src
 public
 vue.config.js
+demo
+babel.config.js

@@ -19,8 +19,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'paintable',
   props: {
     alwaysOnTop: {
@@ -47,32 +49,9 @@ export default {
       type: Number,
       default: 0
     },
-    showUndoRedo: {
-      type: Boolean,
-      default: true
-    },
-    showLineWidth: {
-      type: Boolean,
-      default: true
-    },
     lineWidth: {
       type: Number,
       default: 5
-    },
-    colors: {
-      type: Array,
-      default: () => [
-        'black',
-        '#f00',
-        '#4481c7',
-        'rgba(255, 235, 59, 0.4)',
-        '#999',
-        'green'
-      ]
-    },
-    horizontalNavigation: {
-      type: Boolean,
-      default: false
     },
     active: {
       type: Boolean,
@@ -84,15 +63,15 @@ export default {
     }
   },
   mounted() {
-    this.$paintable.setCanvas(this.$refs.canvas);
+    this.$paintable.setCanvas(this.$refs.canvas as HTMLCanvasElement);
   },
   watch: {
     hide: {
       immediate: true,
-      handler(name) {
+      handler() {
         this.$nextTick(() => {
           if (this.$refs.canvas) {
-            this.$paintable.setCanvas(this.$refs.canvas);
+            this.$paintable.setCanvas(this.$refs.canvas as HTMLCanvasElement);
           }
         });
       }
@@ -100,6 +79,7 @@ export default {
     name: {
       immediate: true,
       handler(name) {
+        console.log(name);
         this.$paintable.setName(name);
       }
     },
@@ -123,7 +103,7 @@ export default {
     }
   },
   computed: {
-    canvasIsEmpty() {
+    canvasIsEmpty(): boolean {
       return this.$paintable.canvasIsEmpty;
     }
   },
@@ -144,23 +124,7 @@ export default {
       this.$paintable.clear(keepHistory);
     }
   }
-  // setup(props) {
-  //   const { paintable, canvas } = usePaintable();
-  //   console.log(canvas, paintable);
-  //   // const isActive = ref(false);
-
-  //   watch(
-  //     () => props.active,
-  //     active => {
-  //       paintable.setActive(active);
-  //     }
-  //   );
-
-  //   return {
-  //     canvas
-  //   };
-  // }
-};
+});
 </script>
 
 <style>

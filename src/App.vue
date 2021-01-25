@@ -70,15 +70,18 @@
       <a
         class="github-link"
         _target="blank"
-        href="https://github.com/ph1p/vue-paintable"
+        href="https://github.com/ph1p/paintable-vue"
         >on github</a
       >
     </footer>
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  name: 'App',
   data() {
     return {
       isFirstPaintable: true,
@@ -93,17 +96,11 @@ export default {
     navigate() {
       this.isFirstPaintable = !this.isFirstPaintable;
     },
-    hide() {
-      this.$hidePaintableNavigation();
-    },
-    show() {
-      this.$showPaintableNavigation();
-    },
-    toggledPaintable(active) {
+    toggledPaintable(active: boolean) {
       this.active = active;
     }
   }
-};
+});
 </script>
 
 <style>
