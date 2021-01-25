@@ -23,7 +23,8 @@
     "vercel-build": "npm run build && vue-cli-service build ./src/main.ts --dest ./demo"
   },
   "main": "dist/paintable.common.js",
-  "module": "dist/paintable.umd.min.js",
+  "unpkg": "dist/paintable.umd.min.js",
+  "jsdelivr": "dist/paintable.umd.min.js",
   "files": [
     "dist/paintable.common.js",
     "dist/paintable.umd.min.js",
