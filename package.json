@@ -32,7 +32,7 @@
     "index.d.ts"
   ],
   "dependencies": {
-    "@paintable/core": "^0.3.0",
+    "@paintable/core": "^0.3.1",
     "core-js": "^3.8.3",
     "vue": "^3.0.0"
   },
