@@ -2,7 +2,7 @@
   "name": "@paintable/vue",
   "version": "0.3.0",
   "description": "Paintable for vue",
-  "author": "Ph1p <me@ph1p.dev>",
+  "author": "Philip <me@ph1p.dev>",
   "types": "index.d.ts",
   "keywords": [
     "canvas",
