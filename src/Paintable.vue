@@ -20,10 +20,16 @@
 </template>
 
 <script lang="ts">
+import { Paintable } from '@paintable/core';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'paintable',
+  data() {
+    return {
+      paintable: new Paintable()
+    };
+  },
   props: {
     alwaysOnTop: {
       type: Boolean,
@@ -63,7 +69,7 @@ export default defineComponent({
     }
   },
   mounted() {
-    this.$paintable.setCanvas(this.$refs.canvas as HTMLCanvasElement);
+    this.paintable.setCanvas(this.$refs.canvas as HTMLCanvasElement);
   },
   watch: {
     hide: {
@@ -71,7 +77,7 @@ export default defineComponent({
       handler() {
         this.$nextTick(() => {
           if (this.$refs.canvas) {
-            this.$paintable.setCanvas(this.$refs.canvas as HTMLCanvasElement);
+            this.paintable.setCanvas(this.$refs.canvas as HTMLCanvasElement);
           }
         });
       }
@@ -79,48 +85,48 @@ export default defineComponent({
     name: {
       immediate: true,
       handler(name) {
-        this.$paintable.setName(name);
+        this.paintable.setName(name);
       }
     },
     active: {
       immediate: true,
       handler(active) {
-        this.$paintable.setActive(active);
+        this.paintable.setActive(active);
       }
     },
     color: {
       immediate: true,
       handler(color) {
-        this.$paintable.setColor(color);
+        this.paintable.setColor(color);
       }
     },
     lineWidth: {
       immediate: true,
       handler(lineWidth) {
-        this.$paintable.setLineWidth(lineWidth);
+        this.paintable.setLineWidth(lineWidth);
       }
     }
   },
   computed: {
     canvasIsEmpty(): boolean {
-      return this.$paintable.canvasIsEmpty;
+      return this.paintable.canvasIsEmpty;
     }
   },
   methods: {
     undo() {
-      this.$paintable.undo();
+      this.paintable.undo();
     },
     redo() {
-      this.$paintable.redo();
+      this.paintable.redo();
     },
     cancel() {
-      this.$paintable.cancel();
+      this.paintable.cancel();
     },
     save() {
-      this.$paintable.save();
+      this.paintable.save();
     },
     clear(keepHistory = false) {
-      this.$paintable.clear(keepHistory);
+      this.paintable.clear(keepHistory);
     }
   }
 });

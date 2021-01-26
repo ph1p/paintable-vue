@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="custom-navigation">
+    <div class="navigation">
       <div v-if="active && !hidePaintable">
         {{ dynamicLineWidth }}px<br />
         <input
@@ -44,9 +44,7 @@
       :active="active"
       :width="800"
       :height="800"
-      :disableNavigation="disableNavigation"
       :hide="hidePaintable"
-      :horizontalNavigation="true"
       :name="isFirstPaintable ? 'my-screen' : 'my-second-screen'"
       :lineWidth="dynamicLineWidth"
       :color="color"
@@ -58,6 +56,7 @@
         Paintable <strong>{{ isFirstPaintable ? '1' : '2' }}</strong>
       </h3>
       <img
+        alt="Unsplash Background-Image"
         :src="
           `https://source.unsplash.com/collection/195845/800x80${
             isFirstPaintable ? 0 : 1
@@ -86,10 +85,9 @@ export default defineComponent({
     return {
       isFirstPaintable: true,
       hidePaintable: false,
-      disableNavigation: false,
       dynamicLineWidth: 5,
       active: false,
-      color: '#000'
+      color: '#000000'
     };
   },
   methods: {
@@ -154,14 +152,14 @@ button {
 button:hover {
   opacity: 1;
 }
-.custom-navigation {
+.navigation {
   /* position: fixed; */
   top: 40px;
   left: 40px;
   z-index: 1001;
   background-color: #fff;
 }
-.custom-navigation .controls {
+.navigation .controls {
   margin: 10px 0 0 0;
   border: 1px solid #ddd;
   padding: 20px;

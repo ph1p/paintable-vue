@@ -7,14 +7,9 @@ declare module '@paintable/vue' {
     save(): void;
     clear(keepHistory?: boolean): void;
   }
-  export interface PluginOptions {
-    setItem: (key: string, value: any) => void;
-    getItem: (key: string) => any;
-    removeItem: (key: string) => void;
-  }
 
   const PaintablePlugin: {
-    install: (app: App, options: PluginOptions) => void;
+    install: (app: App) => void;
   };
 
   export default PaintablePlugin;
