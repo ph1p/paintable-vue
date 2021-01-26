@@ -14,7 +14,7 @@ Follow these three simple steps:
 npm install @paintable/vue
 ```
 
-**main.js\_**
+**main.js**
 
 ```javascript
 import { createApp } from 'vue';
@@ -29,11 +29,12 @@ app.use(Paintable);
 app.mount('#app');
 ```
 
-Inside you **\*.vue** file
+Inside your **\*.vue** file (full example **./src/App.vue**)
 
 ```vue
 <template>
   <paintable
+    ref="paintable"
     :active="active"
     :width="800"
     :height="800"
@@ -54,17 +55,9 @@ export default {
       isFirstPaintable: true,
       hidePaintable: false,
       lineWidth: 5,
-      active: false,
+      active: true,
       color: '#000000'
     };
-  },
-  methods: {
-    navigate() {
-      this.isFirstPaintable = !this.isFirstPaintable;
-    },
-    toggledPaintable(active: boolean) {
-      this.active = active;
-    }
   }
 };
 </script>

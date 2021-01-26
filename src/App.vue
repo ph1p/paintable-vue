@@ -50,7 +50,6 @@
       :color="color"
       class="paint"
       ref="paintable"
-      @toggle-paintable="toggledPaintable"
     >
       <h3>
         Paintable <strong>{{ isFirstPaintable ? '1' : '2' }}</strong>
@@ -93,9 +92,6 @@ export default defineComponent({
   methods: {
     navigate() {
       this.isFirstPaintable = !this.isFirstPaintable;
-    },
-    toggledPaintable(active: boolean) {
-      this.active = active;
     }
   }
 });
