@@ -4,6 +4,8 @@ This package is a complete rewrite of vue-paintable and currently under developm
 
 This plugin works with **Vue 3+**
 
+**Demo:** [https://paintable-vue.vercel.app/](https://paintable-vue.vercel.app/)
+
 ### How to use?
 
 ```bash
