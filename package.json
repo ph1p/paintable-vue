@@ -20,7 +20,7 @@
     "build": "vue-cli-service build --mode production --target lib --name paintable ./src/plugin.ts && rm ./dist/demo.html",
     "lint": "vue-cli-service lint",
     "prepublishOnly": "npm run build",
-    "vercel-build": "vue-cli-service build ./src/main.ts --dest ./public"
+    "vercel-build": "rm -rf ./public && vue-cli-service build ./src/main.ts --dest ./public"
   },
   "main": "dist/paintable.common.js",
   "unpkg": "dist/paintable.umd.min.js",
