@@ -1,6 +1,6 @@
 {
   "name": "@paintable/vue",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Paintable for vue",
   "author": "Philip <me@ph1p.dev>",
   "types": "index.d.ts",
