@@ -32,10 +32,10 @@
         ><br /><br />
       </div>
       <div v-else>
-        <button @click="active = !active" v-if="!hidePaintable">
+        <button @click="active = !active" :disabled="hidePaintable">
           start drawing
         </button>
-        <button @click="hidePaintable = !hidePaintable">show/hide</button>
+        <button @click="hidePaintable = !hidePaintable">{{hidePaintable ? 'show' : 'hide'}} complete canvas</button>
         <button @click="navigate">switch to another paintable</button>
       </div>
     </div>
@@ -69,19 +69,21 @@
         class="github-link"
         _target="blank"
         href="https://github.com/ph1p/paintable-vue"
-        >on github</a
-      >
+        >@paintable/vue &middot; on github &middot; v{{ version }}
+      </a>
     </footer>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { version } from '../package.json';
 
 export default defineComponent({
   name: 'App',
   data() {
     return {
+      version,
       isFirstPaintable: true,
       hidePaintable: false,
       dynamicLineWidth: 5,
@@ -131,8 +133,10 @@ footer {
 }
 footer a {
   color: #777;
-  text-transform: uppercase;
   text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
 }
 button {
   border: 0;
@@ -147,6 +151,9 @@ button {
 }
 button:hover {
   opacity: 1;
+}
+button:disabled {
+  opacity: 0.5;
 }
 .navigation {
   /* position: fixed; */
