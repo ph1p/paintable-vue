@@ -7,8 +7,7 @@
       :width="width"
       :height="height"
       :style="{
-        pointerEvents: !active ? 'none' : 'all',
-        display: !canvasIsEmpty || active ? 'block' : 'none'
+        pointerEvents: !active ? 'none' : 'all'
       }"
       :class="{ active: active || alwaysOnTop }"
     ></canvas>
@@ -35,9 +34,13 @@ export default defineComponent({
       type: Boolean,
       default: true
     },
-    name: {
+    scope: {
       type: String,
       required: true
+    },
+    accuracy: {
+      type: Number,
+      default: 4
     },
     width: {
       type: Number,
@@ -63,6 +66,10 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    isEraser: {
+      type: Boolean,
+      default: false
+    },
     color: {
       type: String,
       default: '#000'
@@ -82,10 +89,16 @@ export default defineComponent({
         });
       }
     },
-    name: {
+    scope: {
       immediate: true,
-      handler(name) {
-        this.paintable.setName(name);
+      handler(scope) {
+        this.paintable.setScope(scope);
+      }
+    },
+    accuracy: {
+      immediate: true,
+      handler(accuracy) {
+        this.paintable.setAccuracy(accuracy);
       }
     },
     active: {
@@ -105,11 +118,12 @@ export default defineComponent({
       handler(lineWidth) {
         this.paintable.setLineWidth(lineWidth);
       }
-    }
-  },
-  computed: {
-    canvasIsEmpty(): boolean {
-      return this.paintable.canvasIsEmpty;
+    },
+    isEraser: {
+      immediate: true,
+      handler(isEraser) {
+        this.paintable.setEraser(isEraser);
+      }
     }
   },
   methods: {
@@ -132,11 +146,12 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 body {
   position: fixed;
 }
 .paintable {
+  display: block;
   overflow: hidden;
   position: fixed;
   height: 100%;

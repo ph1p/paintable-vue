@@ -11,23 +11,16 @@
           value="5"
         />
         <input type="color" v-model="color" /><br /><br />
+        <button @click="isEraser = !isEraser">
+          {{ isEraser ? 'pencil' : 'eraser' }}
+        </button>
         <button @click="$refs.paintable.undo">undo</button>
         <button @click="$refs.paintable.redo">redo</button>
-        <button @click="$refs.paintable.clear(true)">clear</button><br /><br />
-        <button
-          @click="
-            $refs.paintable.save();
-            active = false;
-          "
-        >
+        <!-- <button @click="$refs.paintable.clear">clear</button><br /><br /> -->
+        <button @click="save">
           save
         </button>
-        <button
-          @click="
-            $refs.paintable.cancel();
-            active = false;
-          "
-        >
+        <button @click="cancel">
           cancel</button
         ><br /><br />
       </div>
@@ -35,7 +28,9 @@
         <button @click="active = !active" :disabled="hidePaintable">
           start drawing
         </button>
-        <button @click="hidePaintable = !hidePaintable">{{hidePaintable ? 'show' : 'hide'}} complete canvas</button>
+        <button @click="hidePaintable = !hidePaintable">
+          {{ hidePaintable ? 'show' : 'hide' }} complete canvas
+        </button>
         <button @click="navigate">switch to another paintable</button>
       </div>
     </div>
@@ -45,9 +40,10 @@
       :width="800"
       :height="800"
       :hide="hidePaintable"
-      :name="isFirstPaintable ? 'my-screen' : 'my-second-screen'"
+      :scope="isFirstPaintable ? 'my-screen' : 'my-second-screen'"
       :lineWidth="dynamicLineWidth"
       :color="color"
+      :isEraser="isEraser"
       class="paint"
       ref="paintable"
     >
@@ -76,6 +72,7 @@
 </template>
 
 <script lang="ts">
+import { Paintable } from '@paintable/core';
 import { defineComponent } from 'vue';
 import { version } from '../package.json';
 
@@ -88,12 +85,23 @@ export default defineComponent({
       hidePaintable: false,
       dynamicLineWidth: 5,
       active: false,
+      isEraser: false,
       color: '#000000'
     };
   },
   methods: {
     navigate() {
       this.isFirstPaintable = !this.isFirstPaintable;
+    },
+    save() {
+      (this.$refs.paintable as Paintable).save();
+      this.active = false;
+      this.isEraser = false;
+    },
+    cancel() {
+      (this.$refs.paintable as Paintable).cancel();
+      this.active = false;
+      this.isEraser = false;
     }
   }
 });
