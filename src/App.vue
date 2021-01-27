@@ -44,7 +44,7 @@
       :lineWidth="dynamicLineWidth"
       :color="color"
       :isEraser="isEraser"
-      class="paint"
+      class="paintable"
       ref="paintable"
     >
       <h3>
@@ -108,6 +108,28 @@ export default defineComponent({
 </script>
 
 <style>
+.paintable {
+  border: 5px solid #000;
+  border-radius: 5px;
+  margin: 40px auto;
+  box-sizing: border-box;
+  display: block;
+  width: 810px !important;
+  height: 810px !important;
+  position: relative !important;
+  overflow: hidden;
+}
+.paintable canvas {
+  position: relative;
+  background-color: transparent;
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  touch-action: none;
+}
+
 body {
   font-family: Helvetica, Arial, sans-serif;
   position: initial !important;
@@ -124,17 +146,6 @@ h3 {
 }
 .control {
   margin: 20px;
-}
-.paint {
-  border: 5px solid #000;
-  border-radius: 5px;
-  margin: 40px auto;
-  box-sizing: border-box;
-  display: block;
-  width: 810px !important;
-  height: 810px !important;
-  position: relative !important;
-  overflow: hidden;
 }
 footer {
   text-align: center;

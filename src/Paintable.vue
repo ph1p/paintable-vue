@@ -1,15 +1,12 @@
 <template>
-  <div class="paintable">
+  <div>
     <canvas
+      class="canvas"
       v-if="!hide"
-      class="paintable"
       ref="canvas"
       :width="width"
       :height="height"
-      :style="{
-        pointerEvents: !active ? 'none' : 'all'
-      }"
-      :class="{ active: active || alwaysOnTop }"
+      :class="{ active: active || alwaysOnTop, events: !active }"
     ></canvas>
 
     <div class="content">
@@ -147,34 +144,16 @@ export default defineComponent({
 </script>
 
 <style scoped>
-body {
-  position: fixed;
-}
-.paintable {
-  display: block;
-  overflow: hidden;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  transform: scale(1);
-}
 .paintable.active {
   z-index: 0;
 }
-.paintable .canvas {
-  position: relative;
-  background-color: transparent;
-  z-index: -1;
-  position: absolute;
-  left: 0;
-  top: 0;
-  overflow: hidden;
-  touch-action: none;
-}
-.paintable .canvas.active {
+.canvas.active {
   z-index: 1000;
 }
-.paintable .canvas.active.back {
+.canvas.active.back {
   z-index: 999;
+}
+.canvas.events {
+  pointer-events: none;
 }
 </style>
